@@ -1,0 +1,25 @@
+{
+  "name": "travel-trans",
+  "version": "1.0.0",
+  "description": "A logistics company website for Travel Trans, showcasing transportation services and warehouse facilities.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "logistics",
+    "transportation",
+    "warehouse",
+    "Travel Trans"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.11",
+    "node-fetch": "^2.6.9"
+  },
+  "devDependencies": {}
+}

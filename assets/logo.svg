@@ -1,0 +1,21 @@
+<svg width="260" height="120" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff4b3d"/>
+            <stop offset="100%" stop-color="#b90011"/>
+        </linearGradient>
+    </defs>
+    <circle cx="60" cy="50" r="45" fill="url(#grad)"/>
+    <path d="M48 15c-1 8-6 13-10 20-6 10 31 26 18 53h16c13-26-26-45-6-58 9-6 9-11 10-15z"
+          fill="#2f2f2f" opacity="0.9"/>
+    <rect x="110" y="8" width="130" height="76" rx="14" fill="#111"/>
+    <text x="126" y="40" fill="#ffffff" font-size="27" font-family="Poppins, Arial, sans-serif" font-weight="700">
+        TRAVEL
+    </text>
+    <text x="126" y="70" fill="#ff2d2d" font-size="27" font-family="Poppins, Arial, sans-serif" font-weight="700">
+        TRANS
+    </text>
+    <text x="35" y="108" fill="#4f4f4f" font-size="20" font-family="Poppins, Arial, sans-serif" letter-spacing="0.6em">
+        LOGISTICA
+    </text>
+</svg>
