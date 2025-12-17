@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const nodemailer = require("nodemailer");
 const fetch = require("node-fetch");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
@@ -9,6 +10,23 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "src")));
+
+const limiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 50,
+    standardHeaders: true,
+    legacyHeaders: false
+});
+
+app.use(limiter);
+
+const sanitize = (value = "") =>
+    String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 
 const createTransporter = () => {
     return nodemailer.createTransport({
@@ -23,10 +41,30 @@ const createTransporter = () => {
 };
 
 app.post("/api/contact", async (req, res) => {
-    const { nombre, apellidos, correo, mensaje, recaptcha } = req.body || {};
+    const {
+        nombre,
+        apellidos,
+        correo,
+        mensaje,
+        telefono,
+        empresa,
+        servicio,
+        recaptcha
+    } = req.body || {};
 
-    if (!nombre || !apellidos || !correo || !mensaje || !recaptcha) {
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const phoneRegex = /^[+]?[\d\s().-]{8,}$/;
+
+    if (!nombre || !apellidos || !correo || !mensaje || !recaptcha || !telefono || !empresa) {
         return res.status(400).json({ success: false, message: "Todos los campos son obligatorios." });
+    }
+
+    if (!emailRegex.test(correo)) {
+        return res.status(400).json({ success: false, message: "Correo electr\u00f3nico inv\u00e1lido." });
+    }
+
+    if (!phoneRegex.test(telefono)) {
+        return res.status(400).json({ success: false, message: "Tel\u00e9fono inv\u00e1lido." });
     }
 
     if (!process.env.RECAPTCHA_SECRET) {
@@ -64,6 +102,7 @@ app.post("/api/contact", async (req, res) => {
     }
 
     try {
+        const servicios = Array.isArray(servicio) ? servicio.join(", ") : servicio || "No especificado";
         const transporter = createTransporter();
         await transporter.sendMail({
             from: process.env.MAILER_FROM || process.env.MAILER_USER,
@@ -71,10 +110,13 @@ app.post("/api/contact", async (req, res) => {
             subject: `Nueva solicitud de ${nombre} ${apellidos}`,
             replyTo: correo,
             html: `
-                <p><strong>Nombre:</strong> ${nombre} ${apellidos}</p>
-                <p><strong>Correo:</strong> ${correo}</p>
+                <p><strong>Nombre:</strong> ${sanitize(nombre)} ${sanitize(apellidos)}</p>
+                <p><strong>Empresa:</strong> ${sanitize(empresa)}</p>
+                <p><strong>Correo:</strong> ${sanitize(correo)}</p>
+                <p><strong>Teléfono:</strong> ${sanitize(telefono)}</p>
+                <p><strong>Servicio(s):</strong> ${sanitize(servicios)}</p>
                 <p><strong>Mensaje:</strong></p>
-                <p>${mensaje}</p>
+                <p>${sanitize(mensaje)}</p>
             `
         });
 

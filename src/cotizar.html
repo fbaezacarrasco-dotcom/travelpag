@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Trans | Cotiza tu Transporte Refrigerado</title>
+    <link rel="icon" type="image/png" href="assets/logo-travel.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <header class="site-header" id="inicio">
+        <div class="logo">
+            <img src="assets/logo-travel.webp" alt="Travel Trans Log&#237;stica" class="logo-img">
+        </div>
+        <button class="nav-toggle" aria-expanded="false" aria-label="Abrir men&#250;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="site-nav">
+            <a href="#oferta">Oferta</a>
+            <a href="#por-que">Por qu&#233;</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#formulario-flash">Contacto</a>
+            <a class="badge-btn show-mobile" href="#formulario-flash">&#161;Cotiza hoy!</a>
+        </nav>
+        <a class="badge-btn hide-mobile" href="#formulario-flash">&#161;Cotiza hoy!</a>
+    </header>
+
+    <section class="hero" id="oferta">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/congelada2.jpg">
+            <source src="assets/video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-inner">
+            <div class="hero-form contact-form">
+                <p class="section-tag">Cotizaci&#243;n r&#225;pida</p>
+                <h3>Respuesta en minutos</h3>
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <div class="contact-cta">
+                    <a class="btn primary" href="https://wa.me/56981488304" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+                </div>
+                <div class="field-group full service-select">
+                    <label>&#191;Qu&#233; necesitas?</label>
+                    <div class="service-options">
+                        <label><input type="checkbox" name="servicio" value="Fr&#237;o" checked> Fr&#237;o/Congelado</label>
+                        <label><input type="checkbox" name="servicio" value="&#218;ltima milla"> &#218;ltima milla B2B</label>
+                    </div>
+                </div>
+                <form>
+                    <div class="field-group">
+                        <label for="nombre-hero">Nombre *</label>
+                        <input type="text" id="nombre-hero" name="nombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="apellido-hero">Apellidos *</label>
+                        <input type="text" id="apellido-hero" name="apellido" placeholder="Apellidos" required>
+                    </div>
+                    <div class="field-group full">
+                        <label for="empresa">Empresa *</label>
+                        <input type="text" id="empresa" name="empresa" placeholder="Nombre de empresa" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="correo-hero">Correo electr&#243;nico *</label>
+                        <input type="email" id="correo-hero" name="correo" placeholder="nombre@empresa.com" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="telefono-hero">Tel&#233;fono *</label>
+                        <input type="tel" id="telefono-hero" name="telefono" placeholder="+56 9 0000 0000" required>
+                    </div>
+                    <div class="field-group full">
+                        <label for="mensaje-hero">Necesidad o ruta</label>
+                        <textarea id="mensaje-hero" name="mensaje" rows="3" placeholder="Fechas, puntos de carga y descarga" required></textarea>
+                    </div>
+                    <div class="field-group full captcha-group">
+                        <label>Verificaci&#243;n de seguridad *</label>
+                        <div class="g-recaptcha" data-sitekey="6LeoSCwsAAAAAGDr8Xk_hlpg7jG27TpWIZ8aVHKK" data-theme="light"></div>
+                    </div>
+                    <button type="submit" class="btn primary full">Enviar y cotizar</button>
+                </form>
+            </div>
+            <div class="hero-content">
+                <p class="eyebrow">Exclusivo para Empresas</p>
+                <h1>&#161;Cotiza hoy Transporte exclusivo de Carga para empresas y Última Milla B2B!</h1>
+                <p class="lead">Disponibilidad inmediata para &#250;ltima milla y servicios exclusivo. Te respondemos en minutos, flota con monitoreo 24/7 y bodegas listas para consolidar tu carga.</p>
+                <div class="hero-actions">
+                    <a class="btn secondary" href="#formulario-flash">Cotizaci&#243;n r&#225;pida</a>
+                    <a class="btn ghost hide-mobile" href="#servicios">Ver cobertura</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="por-que">
+        <div class="benefits-card">
+            <article class="benefit">
+                <div class="benefit-icon">&#9889;</div>
+                <h3>Respuesta en minutos</h3>
+                <p>Equipo listo para confirmar rutas y horarios en la Regi&#243;n Metropolitana.</p>
+            </article>
+            <article class="benefit">
+                <div class="benefit-icon">&#128274;</div>
+                <h3>Control total</h3>
+                <p>GPS, monitoreo 24/7 y cumplimiento estricto de temperatura para tu carga.</p>
+            </article>
+            <article class="benefit">
+                <div class="benefit-icon">&#129309;</div>
+                <h3>Socio dedicado</h3>
+                <p>7+ a&#241;os moviendo alimentos, retail y pharma con protocolos a medida.</p>
+            </article>
+        </div>
+    </section>
+    <section class="partner" id="servicios">
+        <div class="section-heading">
+            <p class="eyebrow">Travel Trans</p>
+            <h2>Transporte refrigerado, congelado y &#250;ltima milla</h2>
+            <p>Dise&#241;amos operaciones con ventanas horarias exigentes, bodegas para resguardo y seguimiento minuto a minuto para tus clientes.</p>
+            <p>Operamos en toda la Regi&#243;n Metropolitana y seguimos expandiendo cobertura.</p>
+        </div>
+        <div class="partner-grid">
+            <article>
+                <img src="https://cdn-icons-png.flaticon.com/512/3105/3105896.png" alt="Checklist" loading="lazy">
+                <h3>Rutas dedicadas o on-demand</h3>
+                <p>Planificamos seg&#250;n tus peaks de entrega y SLA de temperatura.</p>
+            </article>
+            <article>
+                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995503.png" alt="Bodegas" loading="lazy">
+                <h3>Bodegas listas</h3>
+                <p>Centros de consolidaci&#243;n en Lampa, Paine, Buin y Maip&#250; con monitoreo 24/7.</p>
+            </article>
+            <article>
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Compromiso" loading="lazy">
+                <h3>&#218;ltima milla refrigerada</h3>
+                <p>Entrega directa al cliente final con control de trazabilidad y evidencia.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="last-mile" id="formulario-flash">
+        <div class="last-mile-content">
+            <span class="badge">Cotizaci&#243;n r&#225;pida</span>
+            <h2>&#191;Listo para mover tu carga?</h2>
+            <p>Cu&#233;ntanos qu&#233; necesitas y te respondemos de inmediato para confirmar capacidad, horarios y tarifas especiales de esta campa&#241;a.</p>
+            <div class="contact-cta">
+                <a class="btn primary" href="https://wa.me/56981488304" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialists" id="diferenciales">
+        <div class="section-heading narrow">
+            <p class="eyebrow">Por qu&#233; conf&#237;an en nosotros</p>
+            <h2>Protocolos y experiencia probada</h2>
+            <p>Operamos con flota refrigerada y congelada, resguardos en bodega y equipos de apoyo para asegurar que tu inventario llegue a tiempo y en temperatura.</p>
+        </div>
+        <div class="specialists-grid">
+            <article class="service-card">
+                <img src="assets/congelada2.jpg" alt="Carga congelada" loading="lazy">
+                <h3>Control de fr&#237;o</h3>
+                <p>Seguimiento continuo y cumplimiento de rangos de temperatura en cada tramo.</p>
+            </article>
+            <article class="service-card">
+                <img src="assets/refrigerada.jpg" alt="Carga refrigerada" loading="lazy">
+                <h3>Equipo especializado</h3>
+                <p>Conductores y staff capacitados en cadenas de fr&#237;o, evidencias y trazabilidad.</p>
+            </article>
+            <article class="service-card">
+                <img src="assets/bodeganueva.jpeg" alt="Bodegas" loading="lazy">
+                <h3>Consolidaci&#243;n estrat&#233;gica</h3>
+                <p>Bodegas para staging, cross-docking y resguardo seg&#250;n tu operaci&#243;n.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="assets/logo-travel.webp" alt="Travel Trans Log&#237;stica" class="logo-img">
+            <p class="footer-description">Especialistas en transporte refrigerado, congelado y &#250;ltima milla.</p>
+            <p class="footer-address">Libertad 176, Maip&#250;, Regi&#243;n Metropolitana.</p>
+            <p class="footer-contact">contacto@traveltrans.cl | +56 9 814 88304</p>
+        </div>
+        <div class="footer-map">
+            <iframe title="Mapa Travel Trans" src="https://www.google.com/maps?q=Libertad%20176%2C%20Maip%C3%BA&output=embed" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p>&copy; <span id="year"></span> Travel Trans. Transporte de cadena de fr&#237;o en todo momento.</p>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/56981488304" target="_blank" rel="noopener">
+        <img src="assets/wsp.avif" alt="Logo WhatsApp">
+        <span>WhatsApp</span>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

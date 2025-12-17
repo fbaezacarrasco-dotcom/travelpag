@@ -3,17 +3,63 @@ if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
 }
 
-const contactForm = document.querySelector(".contact-form form");
-const statusMessage = document.querySelector(".form-status");
-if (contactForm) {
-    contactForm.addEventListener("submit", async (event) => {
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelectorAll(".site-nav a");
+if (navToggle) {
+    navToggle.addEventListener("click", () => {
+        const isOpen = document.body.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        if (document.body.classList.contains("nav-open")) {
+            document.body.classList.remove("nav-open");
+            navToggle?.setAttribute("aria-expanded", "false");
+        }
+    });
+});
+
+document.querySelectorAll(".contact-form form").forEach((form) => {
+    const statusMessage = form.closest(".contact-form")?.querySelector(".form-status");
+    const messageField = form.querySelector("textarea[name='mensaje'], textarea[id='mensaje-hero']");
+    const serviceInputs = form.querySelectorAll("input[name='servicio']");
+
+    const applyServicePrefix = () => {
+        if (!messageField) return;
+        const selected = Array.from(serviceInputs)
+            .filter((i) => i.checked)
+            .map((i) => i.value)
+            .join(" + ");
+        const cleaned = messageField.value.replace(/^\[Servicio: [^\]]+\]\s*/i, "");
+        if (selected) {
+            messageField.value = `[Servicio: ${selected}] ${cleaned}`.trimStart();
+        } else {
+            messageField.value = cleaned.trimStart();
+        }
+    };
+
+    serviceInputs.forEach((input) => {
+        input.addEventListener("change", applyServicePrefix);
+    });
+
+    if (serviceInputs.length) {
+        applyServicePrefix();
+    }
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const formData = {
-            nombre: contactForm.nombre.value.trim(),
-            apellidos: contactForm.apellido.value.trim(),
-            correo: contactForm.correo.value.trim(),
-            mensaje: contactForm.mensaje.value.trim(),
+            nombre: form.nombre?.value?.trim(),
+            apellidos: form.apellido?.value?.trim(),
+            correo: form.correo?.value?.trim() || form["correo-hero"]?.value?.trim(),
+            telefono: form["telefono-hero"]?.value?.trim(),
+            empresa: form.empresa?.value?.trim(),
+            mensaje: form.mensaje?.value?.trim() || form["mensaje-hero"]?.value?.trim(),
+            servicio: Array.from(serviceInputs || [])
+                .filter((i) => i.checked)
+                .map((i) => i.value),
             recaptcha: grecaptcha.getResponse()
         };
 
@@ -48,7 +94,7 @@ if (contactForm) {
             if (statusMessage) {
                 statusMessage.textContent = result.message || "¡Mensaje enviado!";
             }
-            contactForm.reset();
+            form.reset();
             grecaptcha.reset();
         } catch (error) {
             if (statusMessage) {
@@ -60,4 +106,4 @@ if (contactForm) {
             grecaptcha.reset();
         }
     });
-}
+});

@@ -49,6 +49,28 @@ img {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--stroke);
+    background: #fff;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--primary);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
 .logo {
     display: flex;
     flex-direction: column;
@@ -71,6 +93,10 @@ img {
 .site-nav a {
     color: var(--primary);
     transition: color 0.2s ease;
+}
+
+.site-nav .badge-btn {
+    color: #fff;
 }
 
 .site-nav a:hover {
@@ -98,6 +124,15 @@ img {
     padding: clamp(3rem, 8vw, 8rem);
     overflow: hidden;
     isolation: isolate;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(2rem, 4vw, 3rem);
+    width: 100%;
+    flex-direction: row-reverse;
 }
 
 .hero::after {
@@ -135,6 +170,13 @@ img {
 .hero-content {
     max-width: 720px;
     color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-form {
+    max-width: 420px;
+    width: 100%;
     position: relative;
     z-index: 1;
 }
@@ -235,6 +277,11 @@ img {
     font-size: 2.2rem;
     color: var(--accent);
     margin-bottom: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.benefit:hover .benefit-icon {
+    transform: scale(1.08);
 }
 
 .benefit h3 {
@@ -244,6 +291,14 @@ img {
 .benefit p {
     color: var(--muted);
     font-size: 0.95rem;
+}
+
+.hide-mobile {
+    display: inline-flex;
+}
+
+.show-mobile {
+    display: none;
 }
 
 .partner,
@@ -289,7 +344,12 @@ img {
 
 .partner-grid img {
     width: 90px;
-    margin-bottom: 1.2rem;
+    margin: 0 auto 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.partner-grid article:hover img {
+    transform: scale(1.08);
 }
 
 .partner-grid h3,
@@ -814,6 +874,17 @@ img {
     color: #b91c1c;
 }
 
+.form-note {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.form-note a {
+    color: var(--accent);
+    font-weight: 600;
+}
+
 .field-group {
     flex: 1 1 45%;
     display: flex;
@@ -824,6 +895,17 @@ img {
 
 .field-group.full {
     flex-basis: 100%;
+}
+
+.service-select .service-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+.service-select input[type="radio"] {
+    margin-right: 0.35rem;
 }
 
 .field-group input,
@@ -982,8 +1064,56 @@ img {
         justify-content: center;
     }
 
+    .nav-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
     .site-nav {
-        flex-wrap: wrap;
+        position: absolute;
+        top: 100%;
+        right: clamp(1rem, 4vw, 2rem);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        background: #fff;
+        padding: 1rem 1.2rem;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        border: 1px solid var(--stroke);
+        display: none;
+    }
+
+    body.nav-open .site-nav {
+        display: flex;
+    }
+
+    .badge-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-content,
+    .section-heading,
+    .benefit,
+    .partner-grid article,
+    .specialists-grid article,
+    .last-mile-content,
+    .contact-form {
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+
+    .show-mobile {
+        display: inline-flex;
+        width: 100%;
         justify-content: center;
     }
 
@@ -991,19 +1121,66 @@ img {
         padding: 4rem 1.5rem;
         min-height: 70vh;
     }
+
+    .hero-inner {
+        flex-direction: column;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-form {
+        order: 2;
+    }
+
+    .hide-mobile {
+        display: none;
+    }
+
+    body.nav-open .nav-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    body.nav-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.nav-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
 }
 
 @media (max-width: 640px) {
+    .whatsapp-float {
+        right: 20px;
+        left: auto;
+        padding: 0.6rem;
+        border-radius: 50%;
+        width: 54px;
+        height: 54px;
+        justify-content: center;
+    }
+
+    .whatsapp-float span {
+        display: none;
+    }
+
     .site-header {
         align-items: flex-start;
         padding: 1rem;
     }
 
     .site-nav {
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         gap: 0.6rem;
         margin: 0;
+    }
+
+    body.nav-open .site-nav {
+        display: flex;
     }
 
     .hero {
